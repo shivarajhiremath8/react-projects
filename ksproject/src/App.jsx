@@ -1,19 +1,5 @@
-// src/pages/LandingPage.jsx
-// Production-grade, responsive landing page inspired by the provided design.
-// Assumes Tailwind is configured and @heroicons/react is installed.
-//   npm i @heroicons/react
-// You can use this file as App.jsx or import <LandingPage /> into your router.
 
-import {
-  ArrowRightIcon,
-  CheckCircleIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  DevicePhoneMobileIcon,
-  GlobeAltIcon,
-  ShieldCheckIcon,
-  SparklesIcon,
-} from "@heroicons/react/24/outline";
+// Removed @heroicons/react import due to missing dependency
 import { useMemo, useState } from "react";
 
 // --------- Utilities (colors, mock data, helpers) ----------
@@ -23,9 +9,11 @@ const brand = {
   ring: "focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2",
 };
 
-import logo from "./assets/KS_Logo.png"; // 
+import logo from "./assets/KS_Logo.png";
 import heroImageSrc from "./assets/pexels-jahoo-388415.jpg"; // adjust path if needed
-
+import s1 from "./assets/s1.png";
+import s2 from "./assets/s2.png";
+import s3 from "./assets/s3.png";
 
 const heroImage = heroImageSrc;
 
@@ -33,10 +21,10 @@ const midBannerImage =
   "https://images.unsplash.com/photo-1492496913980-501348b61469?q=80&w=2100&auto=format&fit=crop"; // Replace with your asset
 
 const phoneUIs = [
-  "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop",
-]; // Replace with your app screens
+  s1,
+  s3,
+  s2,
+]; // Local app screens
 
 const stats = [
   { value: "200+", label: "Websites built" },
@@ -50,25 +38,21 @@ const features = [
     title: "Sketch Version",
     body:
       "Work quickly on low‑fidelity wireframes or refine hi‑fi with stacks of reusable blocks.",
-    icon: SparklesIcon,
   },
   {
     title: "30+ New Ready Pages",
     body:
       "A flexible set of templates—auth, marketing, product, and support—to ship faster.",
-    icon: GlobeAltIcon,
   },
   {
     title: "Well Organized",
     body:
       "Atomic components, documented props, and examples help you scale the design system.",
-    icon: ShieldCheckIcon,
   },
   {
     title: "HTML/CSS First",
     body:
       "Clean Tailwind utilities and accessible HTML patterns that render fast and look great.",
-    icon: CheckCircleIcon,
   },
 ];
 
@@ -167,7 +151,7 @@ function PrimaryButton({ children, className = "", ...props }) {
       className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-white ${brand.primary} ${brand.primaryHover} ${brand.ring} transition ${className}`}
       {...props}
     >
-      {children} <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+      {children} <span className="h-4 w-4" aria-hidden="true">&rarr;</span>
     </button>
   );
 }
@@ -341,7 +325,7 @@ function FeaturesGrid() {
     <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {features.map((f) => (
         <div key={f.title} className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
-          <f.icon className="h-7 w-7 text-emerald-600" aria-hidden="true" />
+          <span className="h-7 w-7 text-emerald-600" aria-hidden="true">★</span>
           <h4 className="mt-4 font-semibold text-gray-900">{f.title}</h4>
           <p className="mt-2 text-sm text-gray-600">{f.body}</p>
         </div>
@@ -537,14 +521,14 @@ function TestimonialsSlider() {
           className="h-8 w-8 rounded-md border border-gray-200 bg-white flex items-center justify-center"
           aria-label="Previous testimonial"
         >
-          <ChevronLeftIcon className="h-4 w-4" />
+          <span className="h-4 w-4" aria-hidden="true">&larr;</span>
         </button>
         <button
           onClick={next}
           className="h-8 w-8 rounded-md border border-gray-200 bg-white flex items-center justify-center"
           aria-label="Next testimonial"
         >
-          <ChevronRightIcon className="h-4 w-4" />
+          <span className="h-4 w-4" aria-hidden="true">&rarr;</span>
         </button>
       </div>
 
@@ -555,7 +539,7 @@ function TestimonialsSlider() {
             className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm"
           >
             <div className="h-10 w-10 rounded-full bg-gray-100 ring-1 ring-gray-200 flex items-center justify-center">
-              <DevicePhoneMobileIcon className="h-5 w-5 text-gray-400" />
+              <span className="h-5 w-5 text-gray-400" aria-hidden="true">📱</span>
             </div>
             <blockquote className="mt-4 text-gray-700">{t.quote}</blockquote>
             <figcaption className="mt-4">
